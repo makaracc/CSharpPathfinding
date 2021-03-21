@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Task6._4HD</RootNamespace>
+    <RootNamespace>pathFinding</RootNamespace>
   </PropertyGroup>
 
 </Project>

@@ -1,0 +1,12 @@
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/bin/Debug/netcoreapp3.1/pathFinding.deps.json
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/bin/Debug/netcoreapp3.1/pathFinding.runtimeconfig.json
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/bin/Debug/netcoreapp3.1/pathFinding.runtimeconfig.dev.json
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/bin/Debug/netcoreapp3.1/pathFinding.dll
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/bin/Debug/netcoreapp3.1/pathFinding.pdb
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.csprojAssemblyReference.cache
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.AssemblyInfoInputs.cache
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.AssemblyInfo.cs
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.csproj.CoreCompileInputs.cache
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.dll
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.pdb
+/Users/chanmakara/Desktop/OnlineProjGit/CSharpPathfinding/obj/Debug/netcoreapp3.1/pathFinding.genruntimeconfig.cache

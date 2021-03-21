@@ -1,130 +1,140 @@
-// using System;
-// using SplashKitSDK;
+using System;
+using SplashKitSDK;
 
-// namespace MyPathFinding
-// {
+namespace MyPathFinding
+{
 
-//     public class Grid<T>
-//     {
-//         private int _column;
-//         private int _row;
-//         private double _cellSize;
-//         private T[,] _gridArea;
-//         private Point2D _startPoint;
+     // This is a grid Generic (class) with placeholder T.
+    public class Grid<T>
+    {
+        private int _column;
+        private int _row;
+        private double _cellSize;
+        private T[,] _gridArea;
+        private Point2D _startPoint;
 
-//         public int Row
-//         {
-//             get
-//             {
-//                 return _row;
-//             }
-//         }
+        public int Row
+        {
+            get
+            {
+                return _row;
+            }
+        }
 
-//         public int Column
-//         {
-//             get
-//             {
-//                 return _column;
-//             }
-//         }
+        public int Column
+        {
+            get
+            {
+                return _column;
+            }
+        }
 
-//         public double CellSize
-//         {
-//             get
-//             {
-//                 return _cellSize;
-//             }
-//         }
+        public double CellSize
+        {
+            get
+            {
+                return _cellSize;
+            }
+        }
 
-//         public Grid(int column, int row, int singleCellSize)
-//         {
-//             _column = column;
-//             _row = row;
-//             _cellSize = singleCellSize;
-//             _gridArea = new T[column, row];
-//             _startPoint = Factory.CreatePoint(0, 0);
-//         }
-//         public Grid(int column, int row, int singleCellSize, Point2D startPoint, Func<Grid<T>, int, int, T> addGridObjFunc)
-//         {
-//             _column = column;
-//             _row = row;
-//             _cellSize = singleCellSize;
-//             _gridArea = new T[column, row];
-//             _startPoint = startPoint;
+        // Constructor for most of primitive data type.
+        public Grid(int column, int row, int singleCellSize)
+        {
+            _column = column;
+            _row = row;
+            _cellSize = singleCellSize;
+            _gridArea = new T[column, row];
+            _startPoint = Factory.CreatePoint(0, 0);
+        }
 
-//             for (int x = 0; x < _gridArea.GetLength(0); x++)
-//             {
-//                 for (int y = 0; y < _gridArea.GetLength(1); y++)
-//                 {
-//                     _gridArea[x, y] = addGridObjFunc(this, x, y);
-//                 }
-//             }
-//         }
+        // Constructor that is made specifically when working with pathnode.
+        public Grid(int column, int row, int singleCellSize, Point2D startPoint, Func<Grid<T>, int, int, T> addGridObjFunc)
+        {
+            _column = column;
+            _row = row;
+            _cellSize = singleCellSize;
+            _gridArea = new T[column, row];
+            _startPoint = startPoint;
 
-//         public void PrintGrid()
-//         {
-//             for (int columnIndex = 0; columnIndex < _gridArea.GetLength(0); columnIndex++)
-//             {
-//                 for (int rowIndex = 0; rowIndex < _gridArea.GetLength(1); rowIndex++)
-//                 {
-//                     SplashKit.DrawLine(Color.Black, GetAPoint(columnIndex, rowIndex), GetAPoint(columnIndex, rowIndex + 1));
-//                     SplashKit.DrawLine(Color.Black, GetAPoint(columnIndex, rowIndex + 1), GetAPoint(columnIndex + 1, rowIndex + 1));
+            for (int x = 0; x < _gridArea.GetLength(0); x++)
+            {
+                for (int y = 0; y < _gridArea.GetLength(1); y++)
+                {
+                    _gridArea[x, y] = addGridObjFunc(this, x, y);
+                }
+            }
+        }
+        
+        // Prints the grid to screen.
+        public void PrintGrid()
+        {
+            for (int columnIndex = 0; columnIndex < _gridArea.GetLength(0); columnIndex++)
+            {
+                for (int rowIndex = 0; rowIndex < _gridArea.GetLength(1); rowIndex++)
+                {
+                    SplashKit.DrawLine(Color.Black, GetAPoint(columnIndex, rowIndex), GetAPoint(columnIndex, rowIndex + 1));
+                    SplashKit.DrawLine(Color.Black, GetAPoint(columnIndex, rowIndex + 1), GetAPoint(columnIndex + 1, rowIndex + 1));
 
-//                 }
-//                 SplashKit.DrawLine(Color.Black, GetAPoint(0, 0), GetAPoint(_column, 0));
-//                 SplashKit.DrawLine(Color.Black, GetAPoint(_column, 0), GetAPoint(_column, _row));
-//             }
-//         }
+                }
+                SplashKit.DrawLine(Color.Black, GetAPoint(0, 0), GetAPoint(_column, 0));
+                SplashKit.DrawLine(Color.Black, GetAPoint(_column, 0), GetAPoint(_column, _row));
+            }
+        }
 
-//         public Point2D GetAPoint(int x, int y)
-//         {
-//             return Factory.CreatePoint(Convert.ToInt32(x * _cellSize + _startPoint.X), Convert.ToInt32(y * _cellSize + _startPoint.Y));
-//         }
-//         public static Point2D GetAPoint(int x, int y, int cellSize, Point2D startPoint)
-//         {
-//             return Factory.CreatePoint(Convert.ToInt32(x * cellSize + startPoint.X), Convert.ToInt32(y * cellSize + startPoint.Y));
-//         }
+        // Gets a point2d object from given x and y.
+        public Point2D GetAPoint(int x, int y)
+        {
+            return Factory.CreatePoint(Convert.ToInt32(x * _cellSize + _startPoint.X), Convert.ToInt32(y * _cellSize + _startPoint.Y));
+        }
 
-//         public void GetRowColumnNumber(Point2D point, out double x, out double y)
-//         {
-//             x = GetColumnNumber(point);
-//             y = GetRowNumber(point);
-//         }
+        // Gets location of an object in grid from a point on screen and output x and y value of the object.
+        public void GetRowColumnNumber(Point2D point, out double x, out double y)
+        {
+            x = GetColumnNumber(point);
+            y = GetRowNumber(point);
+        }
 
-//         public int GetColumnNumber(Point2D point)
-//         {
-//             return Convert.ToInt32(Math.Floor((point.X - _startPoint.X) / _cellSize));
-//         }
-//         public int GetRowNumber(Point2D point)
-//         {
-//             return Convert.ToInt32(Math.Floor((point.Y - _startPoint.Y) / _cellSize));
-//         }
+        // Returns column number from a given point on screen.
+        public int GetColumnNumber(Point2D point)
+        {
+            return Convert.ToInt32(Math.Floor((point.X - _startPoint.X) / _cellSize));
+        }
+        // Returns row number from a given point on screen.
+        public int GetRowNumber(Point2D point)
+        {
+            return Convert.ToInt32(Math.Floor((point.Y - _startPoint.Y) / _cellSize));
+        }
 
-//         public void SetValue(int columnIndex, int rowIndex, T value)
-//         {
-//             if (columnIndex >= 0 && columnIndex < _column && rowIndex >= 0 && rowIndex < _row)
-//             {
-//                 _gridArea[columnIndex, rowIndex] = value;
-//             }
-//         }
+        // Sets vaule for given row and column.
+        public void SetValue(int columnIndex, int rowIndex, T value)
+        {
+            if (columnIndex >= 0 && columnIndex < _column && rowIndex >= 0 && rowIndex < _row)
+            {
+                _gridArea[columnIndex, rowIndex] = value;
+            }
+        }
 
-//         public void SetValue(Point2D point, T value)
-//         {
-//             SetValue(GetColumnNumber(point), GetRowNumber(point), value);
+        // Sets value for given point.
+        public void SetValue(Point2D point, T value)
+        {
+            SetValue(GetColumnNumber(point), GetRowNumber(point), value);
 
-//         }
+        }
 
-//         public T GetValue(int columnIndex, int rowIndex)
-//         {
-//             if (columnIndex >= 0 && columnIndex < _column && rowIndex >= 0 && rowIndex < _row)
-//             {
-//                 return _gridArea[columnIndex, rowIndex];
-//             }
-//             return default(T);
-//         }
-//         public T GetValue(Point2D point)
-//         {
-//             return GetValue(GetColumnNumber(point), GetRowNumber(point));
-//         }
-//     }
-// }
+        // Gets value from given row and column.
+        public T GetValue(int columnIndex, int rowIndex)
+        {
+            if (columnIndex >= 0 && columnIndex < _column && rowIndex >= 0 && rowIndex < _row)
+            {
+                return _gridArea[columnIndex, rowIndex];
+            }
+            return default(T);
+        }
+
+        // Get value from given point.
+        public T GetValue(Point2D point)
+        {
+            return GetValue(GetColumnNumber(point), GetRowNumber(point));
+        }
+    }
+}

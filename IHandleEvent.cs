@@ -1,7 +1,8 @@
-// namespace MyPathFinding
-// {
-//     public interface IHandleEvent{
-//         void HandleEvents();
-//     }
+namespace MyPathFinding
+{
+    // This is an interface that is responsible for handling events.
+    public interface IHandleEvent{
+        void HandleEvents();
+    }
     
-// }
+}
